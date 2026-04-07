@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroToAsset — Turn Effort Into Ownership</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1A2332;
+            --primary-mid: #2d3142;
+            --accent-teal: #3CC8B4;
+            --accent-gold: #F5A623;
+            --accent-orange: #F5A623;
+            --text-light: #e8e9ed;
+            --text-muted: #6B7280;
+            --border-subtle: rgba(60, 200, 180, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 29, 41, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.2rem 2rem;
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .nav-links a.active {
+            color: var(--accent-teal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(60, 200, 180, 0.08) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.7s forwards;
+        }
+
+        .sub-tagline {
+            font-size: 1.1rem;
+            color: var(--accent-teal);
+            font-style: italic;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 2px solid var(--accent-teal);
+            color: var(--accent-teal);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-teal);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            color: var(--primary-dark);
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 6rem 2rem;
+            background: var(--primary-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            font-style: italic;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            padding: 2.5rem;
+            background: rgba(255, 133, 66, 0.08);
+            border: 1px solid rgba(255, 133, 66, 0.2);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .problem-card:hover {
+            background: rgba(255, 133, 66, 0.12);
+            border-color: rgba(255, 133, 66, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .problem-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent-orange);
+        }
+
+        .problem-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-mid) 100%);
+        }
+
+        .solution-content {
+            max-width: 900px;
+            margin: 3rem auto 0;
+        }
+
+        .solution-content h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .solution-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .solution-point {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .solution-point-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2rem;
+            color: var(--accent-teal);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .solution-point-text h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .solution-point-text p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Course Preview Section */
+        .course-preview {
+            padding: 6rem 2rem;
+            background: var(--primary-dark);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .course-card {
+            padding: 2.5rem;
+            background: rgba(60, 200, 180, 0.08);
+            border: 1px solid var(--border-subtle);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card:hover {
+            background: rgba(60, 200, 180, 0.12);
+            border-color: var(--accent-teal);
+            transform: translateY(-8px);
+        }
+
+        .course-card.featured {
+            grid-row: span 2;
+            background: linear-gradient(135deg, rgba(60, 200, 180, 0.1) 0%, rgba(45, 49, 66, 0.8) 100%);
+            border: 2px solid var(--accent-teal);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .course-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent-teal);
+            color: var(--primary-dark);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            width: fit-content;
+            border-radius: 1px;
+        }
+
+        .course-badge.coming-soon {
+            background: rgba(255, 209, 102, 0.3);
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+        }
+
+        .course-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .course-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .course-price {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.8rem;
+            color: var(--accent-teal);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .course-duration {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .course-description {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-outcomes {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .course-outcomes li {
+            margin-bottom: 0.5rem;
+            margin-left: 1.5rem;
+        }
+
+        .course-cta {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: var(--accent-teal);
+            color: var(--primary-dark);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .course-cta:hover {
+            background: #35b8b3;
+            transform: translateX(4px);
+        }
+
+        .course-card.featured .course-cta {
+            margin-top: auto;
+        }
+
+        /* Principles Section */
+        .principles {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-mid) 100%);
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .principle-card {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .principle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(180deg, var(--accent-teal), var(--accent-gold));
+            transition: height 0.4s ease;
+        }
+
+        .principle-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-4px);
+            border-color: var(--accent-teal);
+        }
+
+        .principle-card:hover::before {
+            height: 100%;
+        }
+
+        .principle-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .principle-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .principle-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* What We're Not Section */
+        .not-section {
+            padding: 6rem 2rem;
+            background: var(--primary-dark);
+        }
+
+        .not-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .not-item {
+            padding: 1.5rem;
+            background: rgba(255, 107, 107, 0.08);
+            border-left: 3px solid rgba(255, 107, 107, 0.4);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .not-item:hover {
+            background: rgba(255, 107, 107, 0.12);
+            border-left-color: rgba(255, 107, 107, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: var(--primary-dark);
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        footer p {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .principles-grid,
+            .not-grid,
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .solution-points {
+                grid-template-columns: 1fr;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-card.featured {
+                grid-row: span 1;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo.png" alt="ZeroToAsset" style="height:36px;width:auto;"></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Turn Effort Into Ownership</h1>
+            <p class="sub-tagline">Build Parallel Income Without Gambling Your Career</p>
+            <p class="tagline">Self-paced learning for professionals who want to build real, durable income assets outside their corporate jobs. No hype. No shortcuts. Just disciplined thinking and repeatable systems.</p>
+            <a href="professionals-path.html" class="cta-button">SEE FIRST COURSE</a>
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">The Problem Most Professionals Face</h2>
+            <p class="section-subtitle">Why pursuing parallel income feels harder than it should</p>
+
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>Conflicting Information</h3>
+                    <p>The internet offers 100 paths to online income. Each claims to be the fastest. None explain your specific constraints or which model actually fits your life. You're left paralyzed by choice.</p>
+                </div>
+
+                <div class="problem-card">
+                    <h3>Limited Available Time</h3>
+                    <p>You have 5–8 hours per week to spare. Most courses assume you can commit 40. They're built for people leaving their jobs, not maintaining careers. You need frameworks designed for your reality.</p>
+                </div>
+
+                <div class="problem-card">
+                    <h3>Fear of Wasting Money</h3>
+                    <p>Buying a course on "the hot platform" only to discover it doesn't suit your model is expensive and demoralizing. You need a way to validate your choice before committing serious capital.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="solution">
+        <div class="container">
+            <div class="solution-content">
+                <h2>What ZeroToAsset Does Differently</h2>
+
+                <div class="solution-points">
+                    <div class="solution-point">
+                        <div class="solution-point-number">1</div>
+                        <div class="solution-point-text">
+                            <h3>Systematic Assessment</h3>
+                            <p>You start by matching yourself to the right income model, not by blindly following trends. Know what you're building before you start.</p>
+                        </div>
+                    </div>
+
+                    <div class="solution-point">
+                        <div class="solution-point-number">2</div>
+                        <div class="solution-point-text">
+                            <h3>Realistic Timelines</h3>
+                            <p>We teach frameworks that respect your professional career. No "quit your job in 90 days." Real assets take time. We honor that.</p>
+                        </div>
+                    </div>
+
+                    <div class="solution-point">
+                        <div class="solution-point-number">3</div>
+                        <div class="solution-point-text">
+                            <h3>Decision Clarity</h3>
+                            <p>Before you waste months on the wrong model, you'll have a 30-Day Execution Roadmap and clear signals for persist, pivot, or walk away.</p>
+                        </div>
+                    </div>
+
+                    <div class="solution-point">
+                        <div class="solution-point-number">4</div>
+                        <div class="solution-point-text">
+                            <h3>Operator's Lens</h3>
+                            <p>Built by someone who has actually operated businesses, not just studied them. Real constraints. Real trade-offs. Real experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="course-preview">
+        <div class="container">
+            <h2 class="section-title">The Curriculum</h2>
+            <p class="section-subtitle">One deliberate path from assessment to ownership</p>
+
+            <div class="courses-grid">
+                <div class="course-card featured">
+                    <div>
+                        <div class="course-badge">Founding Member Pricing</div>
+                        <h3>The Professional's Decision Framework for Online Income</h3>
+                        <p class="course-subtitle">Choose the Right Online Business Model — Before You Build the Wrong One</p>
+
+                        <div class="course-price">$197</div>
+                        <p class="course-duration">~7 hours self-paced | 4 modules | 25 video lessons</p>
+
+                        <div class="course-description">
+                            <strong>Core Promise:</strong> Select the right online income model for your specific constraints — or determine that now is not the right time. Either outcome saves you 6–12 months and thousands of dollars.
+                        </div>
+
+                        <div class="course-outcomes">
+                            <strong>What You'll Get:</strong>
+                            <ul>
+                                <li>4 modules with 25 video lessons</li>
+                                <li>Constraint Audit + Elimination Matrix + Fit Test</li>
+                                <li>Printable worksheets and digital tools</li>
+                                <li>Lifetime access</li>
+                            </ul>
+                        </div>
+
+                        <p style="font-size: 0.85rem; color: var(--accent-gold); margin-bottom: 1.5rem;">$197 founding member — standard price $247</p>
+                    </div>
+                    <a href="professionals-path.html" class="course-cta">LEARN MORE</a>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-badge coming-soon">Coming Soon</div>
+                    <h3>Amazon FBA: The Operator's Framework</h3>
+                    <p class="course-subtitle">A Professional's Guide to Capital-Protected Market Entry</p>
+                    <p class="course-price">$797–$997</p>
+                    <p class="course-description" style="margin-bottom: 2rem;">Physical products. Real capital. Real complexity. For operators ready to scale.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Requires C1 completion</p>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-badge coming-soon">Coming Soon</div>
+                    <h3>Knowledge to Income: The Professional's Course & Template Business</h3>
+                    <p class="course-subtitle">How to Package What You Know Into Products That Earn While You Work</p>
+                    <p class="course-price">$597–$797</p>
+                    <p class="course-description" style="margin-bottom: 2rem;">Digital leverage. Scaling without inventory. Your expertise as the asset.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Requires C1 completion</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="principles">
+        <div class="container">
+            <h2 class="section-title">What We Believe</h2>
+            <p class="section-subtitle">Principles that guide everything we build</p>
+
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <div class="principle-number">01</div>
+                    <h3>Asset Ownership</h3>
+                    <p>Your goal is to own something valuable that works independently of your time. Not to chase trends or accumulate tactics.</p>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">02</div>
+                    <h3>Realistic Timelines</h3>
+                    <p>Building durable assets takes months and years, not weekends. We respect your intelligence by acknowledging reality.</p>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">03</div>
+                    <h3>Evergreen Systems</h3>
+                    <p>We teach frameworks and principles that remain relevant regardless of platform changes or market shifts.</p>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">04</div>
+                    <h3>Self-Paced Learning</h3>
+                    <p>No cohorts. No live calls. No manufactured urgency. Learn when it fits your professional schedule.</p>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">05</div>
+                    <h3>Decision Clarity</h3>
+                    <p>We help you decide whether to proceed, pause, or walk away before you invest significant time or money.</p>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">06</div>
+                    <h3>No Personality Cult</h3>
+                    <p>This platform exists independently of any founder's presence. The systems outlast the instructor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section" style="padding: 5rem 0; background: var(--primary-mid);">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Honest answers to the questions you should be asking</p>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="border-bottom: 1px solid var(--border-subtle); padding: 1.5rem 0;">
+                    <h3 style="font-family: 'Crimson Pro', serif; font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--accent-teal);">Do I need to quit my job to start?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.7;">No. This platform is built specifically for employed professionals. The courses are designed around 2-3 hours per week. Your career is an asset, not an obstacle.</p>
+                </div>
+
+                <div style="border-bottom: 1px solid var(--border-subtle); padding: 1.5rem 0;">
+                    <h3 style="font-family: 'Crimson Pro', serif; font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--accent-teal);">What if I decide not to start a side business?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.7;">That's a valid outcome. Course 1 is a decision framework — it helps you determine whether to proceed, which model fits, or whether now is not the right time. Clarity is the product.</p>
+                </div>
+
+                <div style="border-bottom: 1px solid var(--border-subtle); padding: 1.5rem 0;">
+                    <h3 style="font-family: 'Crimson Pro', serif; font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--accent-teal);">How is this different from other online business courses?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.7;">Most courses sell you one model and assume it fits everyone. We start with your constraints — time, capital, risk tolerance, family obligations — and eliminate models that don't fit before you invest anything.</p>
+                </div>
+
+                <div style="border-bottom: 1px solid var(--border-subtle); padding: 1.5rem 0;">
+                    <h3 style="font-family: 'Crimson Pro', serif; font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--accent-teal);">Do I need any prior business experience?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.7;">No. The framework assumes you're smart and analytical (you're a professional) but new to evaluating online business models. Everything is explained from first principles.</p>
+                </div>
+
+                <div style="border-bottom: 1px solid var(--border-subtle); padding: 1.5rem 0;">
+                    <h3 style="font-family: 'Crimson Pro', serif; font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--accent-teal);">Is there a money-back guarantee?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.7;">Yes. 30-day no-questions-asked refund. If the framework doesn't help you make a clearer decision, you shouldn't pay for it.</p>
+                </div>
+
+                <div style="padding: 1.5rem 0;">
+                    <h3 style="font-family: 'Crimson Pro', serif; font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--accent-teal);">Why are the courses self-paced instead of live?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.7;">Because you're a professional with a schedule. Cohort-based programs create manufactured urgency. Your career doesn't pause for a course. Learn when it fits your life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>zerotoasset.com | contact@zerotoasset.com</p>
+            <p>© 2026 ZeroToAsset</p>
+        </div>
+    </footer>
+</body>
+</html>

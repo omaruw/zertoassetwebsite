@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroToAsset — Turn Effort Into Ownership</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a1d29;
+            --primary-mid: #2d3142;
+            --accent-teal: #4ecdc4;
+            --accent-gold: #ffd166;
+            --accent-orange: #ff8542;
+            --text-light: #e8e9ed;
+            --text-muted: #9fa3b3;
+            --border-subtle: rgba(78, 205, 196, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 29, 41, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.2rem 2rem;
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.08) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-logo {
+            width: 500px;
+            max-width: 90%;
+            margin: 0 auto 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.7s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 2px solid var(--accent-teal);
+            color: var(--accent-teal);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-teal);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            color: var(--primary-dark);
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        /* Principles Section */
+        .principles {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-mid) 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            font-style: italic;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .principle-card {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .principle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(180deg, var(--accent-teal), var(--accent-gold));
+            transition: height 0.4s ease;
+        }
+
+        .principle-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-4px);
+            border-color: var(--accent-teal);
+        }
+
+        .principle-card:hover::before {
+            height: 100%;
+        }
+
+        .principle-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .principle-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .principle-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* What We're Not Section */
+        .not-section {
+            padding: 6rem 2rem;
+            background: var(--primary-dark);
+        }
+
+        .not-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .not-item {
+            padding: 1.5rem;
+            background: rgba(255, 107, 107, 0.08);
+            border-left: 3px solid rgba(255, 107, 107, 0.4);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .not-item:hover {
+            background: rgba(255, 107, 107, 0.12);
+            border-left-color: rgba(255, 107, 107, 0.7);
+        }
+
+        /* Roadmap Section */
+        .roadmap {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-mid) 100%);
+        }
+
+        .roadmap-timeline {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            position: relative;
+        }
+
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-teal), var(--accent-gold), var(--accent-orange));
+            opacity: 0.3;
+        }
+
+        .roadmap-phase {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .roadmap-phase::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary-dark);
+            border: 2px solid var(--accent-teal);
+        }
+
+        .roadmap-phase h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .roadmap-timeframe {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .roadmap-phase p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: var(--primary-dark);
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        footer p {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .principles-grid,
+            .not-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ZeroToAsset</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="course.html">Course</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <img src="ZeroToAsset_Logo.png" alt="ZeroToAsset Logo" class="hero-logo">
+            <h1>Turn Effort Into Ownership</h1>
+            <p class="tagline">Self-paced learning for professionals who want to build real, durable digital assets outside their corporate jobs. No hype. No shortcuts. Just disciplined thinking and repeatable systems.</p>
+            <a href="course.html" class="cta-button">VIEW FIRST COURSE</a>
+        </div>
+    </section>
+
+    <section class="principles">
+        <div class="container">
+            <h2 class="section-title">What We Believe</h2>
+            <p class="section-subtitle">Principles that guide everything we build</p>
+            
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <div class="principle-number">01</div>
+                    <h3>Asset Ownership</h3>
+                    <p>Your goal is to own something valuable that works independently of your time. Not to chase trends or accumulate tactics.</p>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">02</div>
+                    <h3>Realistic Timelines</h3>
+                    <p>Building durable assets takes months and years, not weekends. We respect your intelligence by acknowledging reality.</p>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">03</div>
+                    <h3>Evergreen Systems</h3>
+                    <p>We teach frameworks and principles that remain relevant regardless of platform changes or market shifts.</p>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">04</div>
+                    <h3>Self-Paced Learning</h3>
+                    <p>No cohorts. No live calls. No manufactured urgency. Learn when it fits your professional schedule.</p>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">05</div>
+                    <h3>Decision Clarity</h3>
+                    <p>We help you decide whether to proceed, pause, or walk away before you invest significant time or money.</p>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">06</div>
+                    <h3>No Personality Cult</h3>
+                    <p>This platform exists independently of any founder's presence. The systems outlast the instructor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="not-section">
+        <div class="container">
+            <h2 class="section-title">What We're Not</h2>
+            <p class="section-subtitle">Clear boundaries prevent wasted time</p>
+            
+            <div class="not-grid">
+                <div class="not-item">❌ Not a get-rich-quick platform</div>
+                <div class="not-item">❌ Not a motivational or hustle brand</div>
+                <div class="not-item">❌ Not cohort-based or live training</div>
+                <div class="not-item">❌ Not dependent on founder personality</div>
+                <div class="not-item">❌ Not focused on one tool or trend</div>
+                <div class="not-item">❌ Not selling dreams or lifestyle promises</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="roadmap">
+        <div class="container">
+            <h2 class="section-title">Platform Roadmap</h2>
+            <p class="section-subtitle">Measured growth toward comprehensive asset-building education</p>
+            
+            <div class="roadmap-timeline">
+                <div class="roadmap-phase">
+                    <h3>Phase 1: Validation & Trust</h3>
+                    <div class="roadmap-timeframe">0–90 days</div>
+                    <p>Launch Amazon FBA Reality Check as a paid gatekeeper course. Validate messaging, pricing, and demand. Build trust through expectation management rather than inflated promises.</p>
+                </div>
+
+                <div class="roadmap-phase">
+                    <h3>Phase 2: Asset Paths</h3>
+                    <div class="roadmap-timeframe">3–9 months</div>
+                    <p>Introduce execution-focused asset-building paths covering multiple asset types including commerce, content, and systems. Maintain evergreen, self-paced delivery without live components.</p>
+                </div>
+
+                <div class="roadmap-phase">
+                    <h3>Phase 3: Portfolio Thinking</h3>
+                    <div class="roadmap-timeframe">9–18 months</div>
+                    <p>Teach diversification across multiple assets. Focus on durability and long-term ownership. Position ZeroToAsset as a long-term builder reference and strategic partner.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>ZeroToAsset — One deliberate step at a time</p>
+        </div>
+    </footer>
+</body>
+</html>

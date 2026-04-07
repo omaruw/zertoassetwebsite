@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses — ZeroToAsset</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1A2332;
+            --primary-mid: #2d3142;
+            --accent-teal: #3CC8B4;
+            --accent-gold: #F5A623;
+            --accent-orange: #F5A623;
+            --text-light: #e8e9ed;
+            --text-muted: #6B7280;
+            --border-subtle: rgba(60, 200, 180, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 29, 41, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.2rem 2rem;
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .nav-links a.active {
+            color: var(--accent-teal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(60, 200, 180, 0.08) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.7s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            font-style: italic;
+        }
+
+        /* Courses Section */
+        .courses-section {
+            background: var(--primary-dark);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .course-card {
+            padding: 3rem;
+            background: rgba(60, 200, 180, 0.08);
+            border: 1px solid var(--border-subtle);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            background: rgba(60, 200, 180, 0.12);
+            border-color: var(--accent-teal);
+            transform: translateY(-8px);
+        }
+
+        .course-card.featured {
+            grid-row: span 2;
+            background: linear-gradient(135deg, rgba(60, 200, 180, 0.1) 0%, rgba(45, 49, 66, 0.8) 100%);
+            border: 2px solid var(--accent-teal);
+        }
+
+        .course-badge {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: var(--accent-teal);
+            color: var(--primary-dark);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            width: fit-content;
+            border-radius: 1px;
+        }
+
+        .course-badge.coming-soon {
+            background: rgba(255, 209, 102, 0.3);
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+        }
+
+        .course-card h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+            line-height: 1.3;
+        }
+
+        .course-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .course-price {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2rem;
+            color: var(--accent-teal);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-duration {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .course-description {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-outcomes {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .course-outcomes li {
+            margin-bottom: 0.6rem;
+            margin-left: 1.5rem;
+        }
+
+        .course-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 2px solid var(--accent-gold);
+        }
+
+        .featured .course-note {
+            background: rgba(60, 200, 180, 0.08);
+            border-left-color: var(--accent-teal);
+        }
+
+        .course-cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-teal);
+            color: var(--primary-dark);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: fit-content;
+        }
+
+        .course-cta:hover {
+            background: #35b8b3;
+            transform: translateX(4px);
+        }
+
+        .course-card.featured .course-cta {
+            margin-top: auto;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-mid) 100%);
+        }
+
+        .how-content {
+            max-width: 900px;
+            margin: 3rem auto 0;
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .how-step {
+            padding: 2rem;
+            background: rgba(60, 200, 180, 0.08);
+            border: 1px solid var(--border-subtle);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .how-step:hover {
+            background: rgba(60, 200, 180, 0.12);
+            border-color: var(--accent-teal);
+            transform: translateY(-4px);
+        }
+
+        .how-step-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .how-step h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .how-step p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: var(--primary-dark);
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        footer p {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .courses-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .course-card.featured {
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .courses-grid,
+            .how-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .course-card h2 {
+                font-size: 1.5rem;
+            }
+
+            .course-price {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo.png" alt="ZeroToAsset" style="height:36px;width:auto;"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html" class="active">Courses</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The ZeroToAsset Curriculum</h1>
+            <p class="tagline">One systematic path from assessment to asset ownership</p>
+        </div>
+    </section>
+
+    <section class="section courses-section">
+        <div class="container">
+            <div class="courses-grid">
+                <div class="course-card featured">
+                    <div>
+                        <div class="course-badge">Founding Member — 36% OFF</div>
+
+                        <h2>The Professional's Decision Framework for Online Income</h2>
+
+                        <p class="course-subtitle">Choose the Right Online Business Model for Your Constraints — Before You Build the Wrong One</p>
+
+                        <div class="course-price">$197</div>
+                        <p class="course-duration">~7 hours self-paced</p>
+
+                        <div class="course-description">
+                            <strong>The Core Promise:</strong> You'll select the right online income model for your specific constraints — or determine that now is not the right time. Either outcome saves you 6–12 months and thousands of dollars that would otherwise go to the wrong model.
+                        </div>
+
+                        <div class="course-outcomes">
+                            <strong>What You Get:</strong>
+                            <ul>
+                                <li>5 structured modules (24 video lessons)</li>
+                                <li>Professional Constraint Audit worksheet</li>
+                                <li>Model Comparison Scorecard (4 models deep-dived)</li>
+                                <li>Constraint-Based Elimination Matrix</li>
+                                <li>Three-Layer Fit Test scorecard</li>
+                                <li>5 module quizzes + digital tools</li>
+                                <li>Lifetime access</li>
+                            </ul>
+                        </div>
+
+                        <div class="course-note">
+                            <strong>Founding Member Pricing:</strong> $197 — limited availability. Standard price: $247.
+                        </div>
+                    </div>
+                    <a href="professionals-path.html" class="course-cta">LEARN MORE</a>
+                </div>
+
+                <!-- ═══ PHYSICAL PRODUCT PATH ═══ -->
+                <div class="course-card" style="border-left: 3px solid var(--accent-teal);">
+                    <div class="course-badge" style="background: rgba(60, 200, 180, 0.15); color: var(--accent-teal);">PATH 1: PHYSICAL PRODUCT BUSINESS</div>
+
+                    <h2>Amazon FBA: The Tactical Playbook</h2>
+
+                    <p class="course-subtitle">From Zero to Your First Live Product on Amazon — Step by Step</p>
+
+                    <div class="course-badge coming-soon" style="display: inline-block; margin-bottom: 1rem;">COMING SOON</div>
+
+                    <p class="course-duration">20–30 hours · 29 video lessons · 6 modules</p>
+
+                    <div class="course-description">
+                        Your first FBA product, done right. Business setup, product research, supplier sourcing, listing creation, logistics, PPC launch, and daily operations. Every step walked through with templates and calculators.
+                    </div>
+
+                    <div class="course-outcomes">
+                        What You'll Get:
+                        <ul>
+                            <li>29 video lessons across 6 tactical modules</li>
+                            <li>4 printable checklists and templates</li>
+                            <li>4 digital tools (supplier scorecard, shipping calculator, PPC tracker, restock planner)</li>
+                            <li>6 module quizzes</li>
+                        </ul>
+                    </div>
+
+                    <div class="course-note">
+                        <strong>Then go deeper:</strong> Amazon FBA: The Operator's Framework (C2B) — mindset, risk frameworks, portfolio strategy, and exit planning for serious operators.
+                    </div>
+
+                    <div class="course-note">
+                        ✓ Requires C1 completion · Founding member pricing announced at launch
+                    </div>
+                </div>
+
+                <!-- ═══ KNOWLEDGE PATH ═══ -->
+                <div class="course-card" style="border-left: 3px solid var(--accent-gold);">
+                    <div class="course-badge" style="background: rgba(245, 166, 35, 0.15); color: var(--accent-gold);">PATH 2: KNOWLEDGE & DIGITAL PRODUCT BUSINESS</div>
+
+                    <h2>Knowledge to Income: Quick Start</h2>
+
+                    <p class="course-subtitle">Validate, Package, and Sell What You Already Know</p>
+
+                    <div class="course-badge coming-soon" style="display: inline-block; margin-bottom: 1rem;">COMING SOON</div>
+
+                    <div class="course-description">
+                        Turn your professional expertise into a digital product that earns. Validate your knowledge, choose the right format, pre-sell before building, create your MVP, price it, and launch. Lowest capital path — highest margins.
+                    </div>
+
+                    <div class="course-outcomes">
+                        What You'll Get:
+                        <ul>
+                            <li>Structured modules from validation to first revenue</li>
+                            <li>Pre-sell framework — earn before you build</li>
+                            <li>Platform selection and setup guidance</li>
+                            <li>Pricing psychology and launch strategy</li>
+                        </ul>
+                    </div>
+
+                    <div class="course-note">
+                        <strong>Then go deeper:</strong> Knowledge to Income: Marketing & Growth (C3B) — marketing machine, scaling to $5K/month, and building an evergreen funnel.
+                    </div>
+
+                    <div class="course-note">
+                        ✓ Requires C1 completion
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section courses-section">
+        <div class="container">
+            <h2 class="section-title" style="margin-top: -3rem;">The Full Roadmap</h2>
+            <p class="section-subtitle">Nine steps from salary-dependency to full ownership</p>
+
+            <div style="max-width: 900px; margin: 3rem auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                <div style="padding: 2rem; background: rgba(60, 200, 180, 0.08); border: 1px solid rgba(60, 200, 180, 0.3); border-radius: 2px;">
+                    <h3 style="font-size: 1.2rem; color: var(--accent-teal); margin-bottom: 0.8rem;">Phase 1: DECIDE</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8; font-size: 0.9rem;">
+                        1. Reality Check<br>2. Model Selection<br>3. Validation
+                    </p>
+                    <p style="color: var(--accent-teal); margin-top: 1rem; font-size: 0.85rem;">Covered by C1</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(245, 166, 35, 0.08); border: 1px solid rgba(245, 166, 35, 0.3); border-radius: 2px;">
+                    <h3 style="font-size: 1.2rem; color: var(--accent-gold); margin-bottom: 0.8rem;">Phase 2: BUILD</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8; font-size: 0.9rem;">
+                        4. Foundation Build<br>5. First Revenue<br>6. Systems & Automation
+                    </p>
+                    <p style="color: var(--accent-gold); margin-top: 1rem; font-size: 0.85rem;">Covered by your path courses</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(45, 143, 94, 0.08); border: 1px solid rgba(45, 143, 94, 0.3); border-radius: 2px;">
+                    <h3 style="font-size: 1.2rem; color: #2D8F5E; margin-bottom: 0.8rem;">Phase 3: OWN</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8; font-size: 0.9rem;">
+                        7. Scale to Baseline<br>8. Exit Planning<br>9. Full Ownership
+                    </p>
+                    <p style="color: #2D8F5E; margin-top: 1rem; font-size: 0.85rem;">Advanced courses — coming soon</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section how-it-works">
+        <div class="container">
+            <h2 class="section-title">How the Curriculum Works</h2>
+            <p class="section-subtitle">One deliberate path, multiple destinations</p>
+
+            <div class="how-content">
+                <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 2; margin-bottom: 3rem; text-align: center;">
+                    Every professional starts at C1. It's the decision framework — you'll deep-dive into four business models, score each one against your constraints, and make one clear choice. From there, the curriculum branches into two paths — Physical Product Business (Amazon FBA, with DTC coming later) or Knowledge & Digital Products — depending on where your Fit Test results lead you.
+                </p>
+
+                <div class="how-grid">
+                    <div class="how-step">
+                        <div class="how-step-number">1</div>
+                        <h3>Start Here: C1</h3>
+                        <p>
+                            Complete the foundational course. Choose your model. Build your 30-Day roadmap. Know your decision signals. This is mandatory for everyone.
+                        </p>
+                    </div>
+
+                    <div class="how-step">
+                        <div class="how-step-number">2</div>
+                        <h3>Choose Your Path</h3>
+                        <p>
+                            After C1, your Fit Test results point you to either Path 1 (Physical Product — starting with Amazon FBA) or Path 2 (Knowledge & Digital Products). No guessing. Data-driven.
+                        </p>
+                    </div>
+
+                    <div class="how-step">
+                        <div class="how-step-number">3</div>
+                        <h3>Execute & Scale</h3>
+                        <p>
+                            Operate your asset. Apply the frameworks. Document your results. Real assets take time. Real execution beats theory every time.
+                        </p>
+                    </div>
+
+                    <div class="how-step">
+                        <div class="how-step-number">4</div>
+                        <h3>Prove & Decide</h3>
+                        <p>
+                            Once your parallel income is stable and growing, you've earned the right to make the big decision. C4 teaches the exit framework.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="max-width: 900px; margin: 4rem auto; padding: 2.5rem; background: rgba(60, 200, 180, 0.08); border: 1px solid var(--border-subtle); border-radius: 2px;">
+                    <h3 style="font-size: 1.5rem; color: var(--accent-teal); margin-bottom: 1rem;">Why This Structure?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.9; margin-bottom: 1rem;">
+                        Most people fail at building parallel income because they choose the wrong model first. ZeroToAsset inverts this: You learn to assess yourself, then pick the right path. C1 is the gate. It prevents wasted time and wrong choices downstream.
+                    </p>
+                    <p style="color: var(--text-muted); line-height: 1.9;">
+                        The unlock model creates natural progression and ensures you've actually completed the assessment before moving into advanced execution and exit planning. This is how you build professional-grade results.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>zerotoasset.com | contact@zerotoasset.com</p>
+            <p>© 2026 ZeroToAsset</p>
+        </div>
+    </footer>
+</body>
+</html>

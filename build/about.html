@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — ZeroToAsset</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1A2332;
+            --primary-mid: #2d3142;
+            --accent-teal: #3CC8B4;
+            --accent-gold: #F5A623;
+            --accent-orange: #F5A623;
+            --text-light: #e8e9ed;
+            --text-muted: #6B7280;
+            --border-subtle: rgba(60, 200, 180, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 29, 41, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.2rem 2rem;
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .nav-links a.active {
+            color: var(--accent-teal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(60, 200, 180, 0.08) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.7s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Content Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            font-style: italic;
+        }
+
+        /* Story Section */
+        .story {
+            background: var(--primary-dark);
+        }
+
+        .story-content {
+            max-width: 850px;
+            margin: 3rem auto 0;
+            text-align: center;
+        }
+
+        .story-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-highlight {
+            font-size: 1.3rem;
+            color: var(--accent-teal);
+            font-weight: 600;
+            margin: 2rem 0;
+        }
+
+        /* Credibility Section */
+        .credibility {
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-mid) 100%);
+        }
+
+        .cred-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .cred-card {
+            padding: 2.5rem;
+            background: rgba(60, 200, 180, 0.08);
+            border: 1px solid var(--border-subtle);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+        }
+
+        .cred-card:hover {
+            background: rgba(60, 200, 180, 0.12);
+            border-color: var(--accent-teal);
+            transform: translateY(-4px);
+        }
+
+        .cred-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent-teal);
+        }
+
+        .cred-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Principles Section */
+        .principles {
+            background: var(--primary-dark);
+        }
+
+        .principles-list {
+            max-width: 900px;
+            margin: 3rem auto 0;
+        }
+
+        .principle-item {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .principle-item:last-child {
+            border-bottom: none;
+        }
+
+        .principle-item h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .principle-item p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* What You Won't Find */
+        .not-found {
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-mid) 100%);
+        }
+
+        .not-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .not-item {
+            padding: 2rem;
+            background: rgba(255, 107, 107, 0.08);
+            border-left: 3px solid rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .not-item:hover {
+            background: rgba(255, 107, 107, 0.12);
+            border-left-color: rgba(255, 107, 107, 0.7);
+        }
+
+        .not-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .not-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary-dark);
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 2px solid var(--accent-teal);
+            color: var(--accent-teal);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-teal);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            color: var(--primary-dark);
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: var(--primary-dark);
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        footer p {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .cred-grid,
+            .not-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .story-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo.png" alt="ZeroToAsset" style="height:36px;width:auto;"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Built by a Practitioner. Designed for Professionals.</h1>
+            <p class="tagline">An AI-powered learning platform built on real operational experience.</p>
+        </div>
+    </section>
+
+    <section class="section story">
+        <div class="container">
+            <h2 class="section-title">The Platform Story</h2>
+            <p class="section-subtitle">Why this curriculum exists</p>
+
+            <div class="story-content">
+                <p>
+                    ZeroToAsset was built by a practitioner. The Founder spent 30 years in corporate general management, operating businesses exceeding $50M in annual revenue.
+                </p>
+
+                <p>
+                    More importantly, the Founder has personally tested, operated, and scaled multiple physical and digital business models—not as a theorist or outside observer, but as an active operator making decisions with real capital at stake.
+                </p>
+
+                <p class="story-highlight">
+                    This is not a platform built by someone selling you what they think you want to hear. This is a platform built by someone who has lived the journey.
+                </p>
+
+                <p>
+                    After years of seeing employed professionals struggle with conflicting advice, overpromises, and courses designed for people leaving their jobs rather than maintaining them, the Founder decided to build the resource that actually existed in the market: a systematic, evidence-based approach to building parallel income without gambling your career.
+                </p>
+
+                <p>
+                    ZeroToAsset operates anonymously because the curriculum does not depend on a founder's personality. The systems outlast the instructor. Your success is the only outcome that matters.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section credibility">
+        <div class="container">
+            <h2 class="section-title">What Makes This Different</h2>
+            <p class="section-subtitle">Real operator. Real experience. Real constraints.</p>
+
+            <div class="cred-grid">
+                <div class="cred-card">
+                    <h3>Operator, Not Theorist</h3>
+                    <p>The Founder has personally managed operational P&Ls, navigated market entry, scaled teams, and made hard decisions about what to kill and what to scale. The curriculum is built on lived experience, not speculation.</p>
+                </div>
+
+                <div class="cred-card">
+                    <h3>Tested Models</h3>
+                    <p>Every income model taught here has been personally operated. Not observed. Not recommended by someone else. Built and scaled by the Founder with real capital, real timelines, and real obstacles.</p>
+                </div>
+
+                <div class="cred-card">
+                    <h3>Professional Lens</h3>
+                    <p>Built specifically for people with careers. The Founder understands that you don't have 40 hours a week. You're not leaving your job next month. Your constraints are features, not failures.</p>
+                </div>
+
+                <div class="cred-card">
+                    <h3>No Guru Mythology</h3>
+                    <p>You'll never see a founder photo or personal story used as a sales mechanism. The systems are designed to work independently of the instructor. That's how you know the advice is real.</p>
+                </div>
+
+                <div class="cred-card">
+                    <h3>Institutional Gravitas</h3>
+                    <p>This isn't a side project built over weekends. It's built with the same disciplined approach to architecture, curriculum design, and student outcomes as a Fortune 500 training program.</p>
+                </div>
+
+                <div class="cred-card">
+                    <h3>Evidence-Based Teaching</h3>
+                    <p>No hype. No "passive income." No motivational nonsense. Every principle is grounded in operational reality and can be explained with examples of actual execution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section story">
+        <div class="container">
+            <h2 class="section-title">Our Mission</h2>
+            <p class="section-subtitle">What we're ultimately trying to do</p>
+
+            <div class="story-content">
+                <p>
+                    Guide employed professionals from salary-dependency toward owning real income assets — and eventually toward the informed, confident decision to leave the corporate world on their own terms.
+                </p>
+
+                <p>
+                    We don't believe employment is bad. We believe you should have a choice. Building that choice requires discipline, systems, and time — not hype and shortcuts.
+                </p>
+
+                <p style="margin-top: 2rem; font-size: 1.15rem; color: var(--accent-teal);">
+                    This platform exists to give you the tools to make that choice yourself.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section standards" style="background: rgba(60, 200, 180, 0.05);">
+        <div class="container">
+            <h2 class="section-title">Our Standards</h2>
+            <p class="section-subtitle">What we commit to in every course we build</p>
+
+            <div class="not-grid">
+                <div class="not-item">
+                    <h4>Evidence Over Claims</h4>
+                    <p>Every framework is grounded in operational reality. If we can't show you how it works with real examples, we don't teach it.</p>
+                </div>
+
+                <div class="not-item">
+                    <h4>Constraints First</h4>
+                    <p>We design for professionals with limited time, real obligations, and careers worth protecting. Your constraints shape the curriculum.</p>
+                </div>
+
+                <div class="not-item">
+                    <h4>Honest Outcomes</h4>
+                    <p>We'll tell you when a model doesn't fit your situation. Saving you from the wrong path is as valuable as putting you on the right one.</p>
+                </div>
+
+                <div class="not-item">
+                    <h4>Systems That Outlast</h4>
+                    <p>Tactics expire. Platforms change. We teach decision frameworks and operating systems that remain relevant for decades.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-section">
+        <div class="container">
+            <h2 class="section-title">Ready to Explore?</h2>
+            <p class="section-subtitle">Start with the foundational course designed for professionals</p>
+            <a href="courses.html" class="cta-button">EXPLORE THE COURSE CATALOG</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>zerotoasset.com | contact@zerotoasset.com</p>
+            <p>© 2026 ZeroToAsset</p>
+        </div>
+    </footer>
+</body>
+</html>

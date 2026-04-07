@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon FBA: The Operator's Framework | ZeroToAsset</title>
+    <meta name="description" content="The Operator's Framework: 43 lessons, 15 operator tools, 10 worksheets, zero hype. Built by a 30-year operator. Coming soon — complete The Professional's Path first.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-dark: #1A2332;
+            --primary-mid: #2d3142;
+            --accent-teal: #3CC8B4;
+            --accent-gold: #F5A623;
+            --accent-orange: #F5A623;
+            --text-light: #e8e9ed;
+            --text-muted: #6B7280;
+            --border-subtle: rgba(60, 200, 180, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 35, 50, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: var(--accent-teal);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Crimson Pro', serif;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* HERO SECTION */
+        #hero {
+            margin-top: 60px;
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+        }
+
+        .eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2.25rem;
+            }
+        }
+
+        .subheadline {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .subheadline {
+                font-size: 1rem;
+            }
+        }
+
+        .pricing-box {
+            background: rgba(45, 49, 66, 0.5);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+
+        .price-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-display {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .price-current {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3rem;
+            color: var(--accent-teal);
+            font-weight: 600;
+        }
+
+        .price-original {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .savings {
+            color: var(--accent-gold);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button.cta-primary {
+            background: var(--accent-orange);
+            color: var(--primary-dark);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            letter-spacing: 0.03em;
+        }
+
+        button.cta-primary:hover {
+            background: #ff6f1f;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245, 166, 35, 0.3);
+        }
+
+        a.cta-secondary {
+            color: var(--accent-teal);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            border-bottom: 2px solid var(--accent-teal);
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+
+        a.cta-secondary:hover {
+            color: #3fb5ae;
+        }
+
+        /* PROBLEM SECTION */
+        #problems {
+            background: rgba(45, 49, 66, 0.3);
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .problem-card {
+            background: rgba(60, 200, 180, 0.08);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            border-color: rgba(60, 200, 180, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .problem-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent-orange);
+        }
+
+        .problem-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* SOLUTION SECTION */
+        #solution {
+            text-align: center;
+        }
+
+        .solution-intro {
+            margin-bottom: 2rem;
+        }
+
+        .solution-intro p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .creator-note {
+            background: rgba(60, 200, 180, 0.08);
+            border-left: 4px solid var(--accent-teal);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .creator-note p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* CURRICULUM SECTION */
+        #curriculum {
+            background: rgba(45, 49, 66, 0.3);
+        }
+
+        .curriculum-intro {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .curriculum-intro p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .module-card {
+            background: rgba(60, 200, 180, 0.08);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            border-color: rgba(60, 200, 180, 0.3);
+            box-shadow: 0 8px 24px rgba(60, 200, 180, 0.1);
+        }
+
+        .module-header {
+            background: rgba(60, 200, 180, 0.12);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .module-header:hover {
+            background: rgba(60, 200, 180, 0.15);
+        }
+
+        .module-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .module-toggle {
+            font-size: 1.25rem;
+            color: var(--accent-teal);
+            transition: transform 0.3s ease;
+        }
+
+        .module-toggle.active {
+            transform: rotate(180deg);
+        }
+
+        .module-content {
+            display: none;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .module-content.active {
+            display: block;
+        }
+
+        .lesson-count {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* TOOLS SECTION */
+        #tools {
+            text-align: center;
+        }
+
+        .tools-intro {
+            margin-bottom: 2rem;
+        }
+
+        .tools-intro p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            background: rgba(60, 200, 180, 0.08);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            border-color: rgba(60, 200, 180, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-name {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* QUALIFICATION SECTION */
+        #qualification {
+            background: rgba(245, 166, 35, 0.08);
+            border: 1px solid rgba(245, 166, 35, 0.2);
+            border-radius: 12px;
+        }
+
+        #qualification h2 {
+            color: var(--accent-orange);
+        }
+
+        .qualification-text {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .qualification-highlight {
+            background: rgba(60, 200, 180, 0.12);
+            border-left: 4px solid var(--accent-teal);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 8px;
+        }
+
+        .qualification-highlight p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* WHAT'S INCLUDED SECTION */
+        #included {
+            background: rgba(45, 49, 66, 0.3);
+        }
+
+        .included-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .included-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .included-icon {
+            color: var(--accent-teal);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .included-text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .included-text strong {
+            color: var(--text-light);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        /* FOUNDING MEMBER SECTION */
+        #founding {
+            background: linear-gradient(135deg, rgba(60, 200, 180, 0.1) 0%, rgba(245, 166, 35, 0.05) 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .founding-badge {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .founding-offer {
+            margin-top: 2rem;
+        }
+
+        .offer-detail {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin: 1rem 0;
+            line-height: 1.7;
+        }
+
+        .seats-remaining {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-orange);
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+
+        /* LEAD MAGNET SECTION */
+        #lead-magnet {
+            background: rgba(45, 49, 66, 0.5);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .magnet-form {
+            background: rgba(60, 200, 180, 0.08);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(26, 35, 50, 0.8);
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--accent-teal);
+        }
+
+        input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-footer {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        /* FAQ SECTION */
+        #faq {
+            background: rgba(45, 49, 66, 0.3);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+
+        .faq-item {
+            background: rgba(60, 200, 180, 0.08);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(60, 200, 180, 0.08);
+            transition: background 0.3s ease;
+            font-weight: 600;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.05rem;
+        }
+
+        .faq-question:hover {
+            background: rgba(60, 200, 180, 0.12);
+        }
+
+        .faq-toggle {
+            color: var(--accent-teal);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+            background: rgba(26, 35, 50, 0.4);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* FINAL CTA SECTION */
+        #final-cta {
+            text-align: center;
+        }
+
+        .final-cta-text {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .final-cta-text strong {
+            color: var(--accent-teal);
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(45, 49, 66, 0.5);
+            border-top: 1px solid var(--border-subtle);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--accent-teal);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* UTILITY */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-3 {
+            margin-top: 2rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-top: 1rem;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            button.cta-primary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo"><img src="logo.png" alt="ZeroToAsset" style="height:36px;width:auto;"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="container">
+            <div class="eyebrow">FOUNDING MEMBER ACCESS — 25 SEATS ONLY</div>
+            <h1>Amazon FBA: The Operator's Framework</h1>
+            <p class="subheadline">43 lessons. 15 operator tools. 10 worksheets. 8 modules. Zero hype. The course that may convince you not to start — and considers that a win.</p>
+
+            <div class="pricing-box">
+                <div class="price-label">FOUNDING MEMBER PRICE</div>
+                <div class="price-display">
+                    <div class="price-current">Coming Soon</div>
+                    <div class="price-original">$1,497</div>
+                </div>
+                <div class="savings">SAVE $500 (33% OFF)</div>
+            </div>
+
+            <div class="cta-group">
+                <button class="cta-primary" onclick="document.getElementById('founding').scrollIntoView({behavior: 'smooth'});">COMING SOON — Join Waitlist →</button>
+                <a href="#lead-magnet" class="cta-secondary">Download Free Guide First</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section id="problems">
+        <div class="container">
+            <h2>87% of Amazon FBA Businesses Fail. Here's Why.</h2>
+
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <h3>They start with $5,000</h3>
+                    <p>Real minimum is $15,000. Undercapitalization kills more businesses than bad products. You need runway to weather PPC scaling, inventory holds, and market validation. Starting lean isn't brave—it's risky.</p>
+                </div>
+
+                <div class="problem-card">
+                    <h3>They think it's passive</h3>
+                    <p>Launch requires 15–25 hours/week. Daily monitoring is non-negotiable even at maturity. You're not building a passive asset; you're building a business. Some operators eventually step back, but not until it's systematized.</p>
+                </div>
+
+                <div class="problem-card">
+                    <h3>They chase tactics, not systems</h3>
+                    <p>Tactics expire. PPC strategies change, market dynamics shift, algorithms update. Decision systems, risk frameworks, and operational discipline endure. This course builds the latter, not the former.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION SECTION -->
+    <section id="solution">
+        <div class="container">
+            <h2>This Course Builds Operators, Not Sellers</h2>
+
+            <div class="solution-intro">
+                <p class="section-subtitle">Built by a 30-year operator who has run businesses exceeding $50M/year in revenue. Not a guru. Not a course creator. A practitioner.</p>
+
+                <div class="creator-note">
+                    <p>Most FBA courses teach you the mechanics: how to find products, launch, scale. This course assumes you already know that. Instead, it teaches you how to think like an operator: how to allocate capital, manage risk, make decisions under uncertainty, and build systems that outlast tactics.</p>
+                    <p style="margin-top: 1rem;">You'll leave knowing whether FBA is right for your life and capital situation. Some students will decide it's not. We're OK with that.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURRICULUM SECTION -->
+    <section id="curriculum">
+        <div class="container">
+            <div class="curriculum-intro">
+                <h2>8 Modules. 43 Deep-Dive Lessons. 15 Operator Tools.</h2>
+                <p>Each module builds on the last. By the end, you'll have a complete operator's playbook.</p>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card">
+                    <div class="module-header" onclick="toggleModule(this)">
+                        <div>
+                            <span class="lesson-count">5 Lessons</span>
+                            <div class="module-title">Module 1: Reality Assessment</div>
+                        </div>
+                        <div class="module-toggle">▼</div>
+                    </div>
+                    <div class="module-content">
+                        <strong>Marketplace truth:</strong> What Amazon's ecosystem actually requires.<br><br>
+                        <strong>Capital requirements:</strong> Real numbers, not rounded down.<br><br>
+                        <strong>Time reality:</strong> What you're really committing to.<br><br>
+                        <strong>Competition dynamics:</strong> How winners and losers emerge.<br><br>
+                        <strong>Self-assessment:</strong> Are you ready?
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header" onclick="toggleModule(this)">
+                        <div>
+                            <span class="lesson-count">5 Lessons</span>
+                            <div class="module-title">Module 2: Operator Foundations</div>
+                        </div>
+                        <div class="module-toggle">▼</div>
+                    </div>
+                    <div class="module-content">
+                        <strong>Mindset:</strong> Operator vs. entrepreneur differences.<br><br>
+                        <strong>Risk framework:</strong> How to think about downside.<br><br>
+                        <strong>Decision systems:</strong> Rules you'll live by.<br><br>
+                        <strong>Data discipline:</strong> Metric-driven decision-making.<br><br>
+                        <strong>Long-term positioning:</strong> Building for scale, not quick wins.
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header" onclick="toggleModule(this)">
+                        <div>
+                            <span class="lesson-count">5 Lessons</span>
+                            <div class="module-title">Module 3: Capital-Protected Launch</div>
+                        </div>
+                        <div class="module-toggle">▼</div>
+                    </div>
+                    <div class="module-content">
+                        <strong>Capital planning:</strong> Every dollar accounted for.<br><br>
+                        <strong>Product selection:</strong> The scorecard method.<br><br>
+                        <strong>Unit economics:</strong> Knowing your margins at scale.<br><br>
+                        <strong>Supplier relationships:</strong> Building trust and negotiating.<br><br>
+                        <strong>First order:</strong> Placement and logistics.
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header" onclick="toggleModule(this)">
+                        <div>
+                            <span class="lesson-count">5 Lessons</span>
+                            <div class="module-title">Module 4: Market Entry Execution</div>
+                        </div>
+                        <div class="module-toggle">▼</div>
+                    </div>
+                    <div class="module-content">
+                        <strong>Listing optimization:</strong> Ranking vs. conversion.<br><br>
+                        <strong>PPC diagnostics:</strong> Reading the data correctly.<br><br>
+                        <strong>Data interpretation:</strong> What the numbers mean.<br><br>
+                        <strong>Kill criteria:</strong> When to stop and pivot.<br><br>
+                        <strong>Validation:</strong> Proving product-market fit.
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header" onclick="toggleModule(this)">
+                        <div>
+                            <span class="lesson-count">5 Lessons</span>
+                            <div class="module-title">Module 5: Operational Excellence</div>
+                        </div>
+                        <div class="module-toggle">▼</div>
+                    </div>
+                    <div class="module-content">
+                        <strong>Cash flow:</strong> Your real constraint.<br><br>
+                        <strong>Inventory management:</strong> Turn vs. stock-out risk.<br><br>
+                        <strong>CRO (Conversion Rate Optimization):</strong> Scaling without proportional cost increase.<br><br>
+                        <strong>Competitive response:</strong> When and how competitors will move.<br><br>
+                        <strong>Operational speed:</strong> Why it matters.
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header" onclick="toggleModule(this)">
+                        <div>
+                            <span class="lesson-count">4 Lessons</span>
+                            <div class="module-title">Module 6: Portfolio Thinking</div>
+                        </div>
+                        <div class="module-toggle">▼</div>
+                    </div>
+                    <div class="module-content">
+                        <strong>Multi-product strategy:</strong> When and how to expand.<br><br>
+                        <strong>Lifecycle management:</strong> Products age. Know what to do when.<br><br>
+                        <strong>Capital allocation:</strong> Choosing which bets get funding.<br><br>
+                        <strong>Margin sustainability:</strong> Defending your economics.
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header" onclick="toggleModule(this)">
+                        <div>
+                            <span class="lesson-count">5 Lessons</span>
+                            <div class="module-title">Module 7: Exit Planning</div>
+                        </div>
+                        <div class="module-toggle">▼</div>
+                    </div>
+                    <div class="module-content">
+                        <strong>Failure signals:</strong> Recognizing when it's time to cut losses.<br><br>
+                        <strong>Sunk cost detachment:</strong> Emotional decision-making costs money.<br><br>
+                        <strong>Capital recovery:</strong> Getting your money back if it doesn't work.<br><br>
+                        <strong>Liquidation:</strong> How to exit cleanly.<br><br>
+                        <strong>Business sale:</strong> If you build a real business, you can sell it.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOOLS SECTION -->
+    <section id="tools">
+        <div class="container">
+            <h2>7 Operator Tools Included</h2>
+            <p class="section-subtitle">Interactive spreadsheets and frameworks you'll use for your business.</p>
+
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">💰</div>
+                    <div class="tool-name">Capital Planning Spreadsheet</div>
+                    <div class="tool-desc">Model your capital needs from inventory to operations.</div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">✓</div>
+                    <div class="tool-name">Product Selection Scorecard</div>
+                    <div class="tool-desc">Evaluate products systematically using operator criteria.</div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">📊</div>
+                    <div class="tool-name">Unit Economics Calculator</div>
+                    <div class="tool-desc">Know your true margin at scale—not just unit cost.</div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🔍</div>
+                    <div class="tool-name">PPC Diagnostic Framework</div>
+                    <div class="tool-desc">Debug your advertising spend and fix underperformance.</div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">📋</div>
+                    <div class="tool-name">Monthly Operations Checklist</div>
+                    <div class="tool-desc">Standard operating procedures for every month.</div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🛑</div>
+                    <div class="tool-name">Kill Criteria Decision Tree</div>
+                    <div class="tool-desc">When to abandon products and move capital elsewhere.</div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🎯</div>
+                    <div class="tool-name">Qualification Filter</div>
+                    <div class="tool-desc">Self-assess if you're truly ready before you start.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUALIFICATION FILTER SECTION -->
+    <section id="qualification" class="container">
+        <h2>This Course Starts by Asking If You Should Even Be Here</h2>
+
+        <p class="qualification-text">
+            Most courses sell you and hope you succeed. This one filters you first.
+        </p>
+
+        <div class="qualification-highlight">
+            <p>Module 0 includes a 20-statement qualification assessment. If you don't pass, the course advises you NOT to proceed until your conditions improve.</p>
+            <p style="margin-top: 1rem;">We'd rather lose a sale than watch you lose $15,000.</p>
+        </div>
+
+        <p class="qualification-text" style="margin-top: 2rem;">
+            This is the operator's way: brutal honesty about constraints, capital, time, and likelihood of success. If the assessment says "not yet," it means your life, capital, or situation isn't aligned with FBA right now. That's valuable information.
+        </p>
+    </section>
+
+    <!-- WHAT'S INCLUDED SECTION -->
+    <section id="included">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">What's Included</h2>
+
+            <div class="included-grid">
+                <div class="included-item">
+                    <div class="included-icon">▸</div>
+                    <div class="included-text">
+                        <strong>34 Deep-Dive Video Lessons</strong>
+                        10–15 minutes each. Built for learning and reference.
+                    </div>
+                </div>
+
+                <div class="included-item">
+                    <div class="included-icon">▸</div>
+                    <div class="included-text">
+                        <strong>7 Interactive Operator Tools</strong>
+                        Spreadsheets, scorecards, calculators. Use them for your business.
+                    </div>
+                </div>
+
+                <div class="included-item">
+                    <div class="included-icon">▸</div>
+                    <div class="included-text">
+                        <strong>PDF Frameworks for Every Module</strong>
+                        Reference guides and decision trees.
+                    </div>
+                </div>
+
+                <div class="included-item">
+                    <div class="included-icon">▸</div>
+                    <div class="included-text">
+                        <strong>Module Quizzes with Pass Criteria</strong>
+                        Test your understanding. Earn certificate of completion.
+                    </div>
+                </div>
+
+                <div class="included-item">
+                    <div class="included-icon">▸</div>
+                    <div class="included-text">
+                        <strong>LearnWorlds Community Access</strong>
+                        Connect with other operators. Ask questions. Share wins.
+                    </div>
+                </div>
+
+                <div class="included-item">
+                    <div class="included-icon">▸</div>
+                    <div class="included-text">
+                        <strong>Founding Member Bonus</strong>
+                        Direct Q&A access during beta. Shape the final course content.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUNDING MEMBER OFFER SECTION -->
+    <section id="founding">
+        <div class="container">
+            <div style="background: rgba(245, 166, 35, 0.08); border: 1px solid rgba(245, 166, 35, 0.2); border-radius: 16px; padding: 3rem 2rem; text-align: center;">
+                <div class="founding-badge">COMING SOON</div>
+                <h2>Join 25 Operators Building Real Businesses</h2>
+
+                <div class="founding-offer"><p style="font-size: 1.1rem; color: var(--accent-gold); margin-bottom: 1rem;">This course launches after The Professional's Path. Complete C1 first to determine if FBA is right for your constraints.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 600px; margin: 2rem auto; text-align: left;">
+                        <div>
+                            <div class="price-original" style="margin-bottom: 0.5rem;">Standard Price</div>
+                            <div style="font-family: 'Crimson Pro', serif; font-size: 2rem; color: var(--text-muted);">$1,497</div>
+                        </div>
+                        <div>
+                            <div class="price-label">YOUR PRICE NOW</div>
+                            <div style="font-family: 'Crimson Pro', serif; font-size: 2rem; color: var(--accent-teal); font-weight: 600;">$997</div>
+                            <div class="savings">LOCKED IN FOREVER</div>
+                        </div>
+                    </div>
+
+                    <div class="offer-detail">
+                        <strong style="color: var(--text-light); display: block; margin-bottom: 0.5rem;">Founding Member Benefits:</strong>
+                        • Early access (modules delivered as completed)<br>
+                        • Locked-in pricing for future courses<br>
+                        • Direct influence on final content<br>
+                        • Priority access when enrollment opens<br>
+                        • Private Q&A with the instructor during beta<br>
+                    </div>
+
+                    <div class="seats-remaining">⚡ 18 OF 25 SEATS REMAINING</div>
+
+                    <div class="cta-group" style="margin-top: 2rem;">
+                        <button class="cta-primary" onclick="document.getElementById('lead-magnet').scrollIntoView({behavior: 'smooth'});">JOIN WAITLIST →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEAD MAGNET SECTION -->
+    <section id="lead-magnet">
+        <div class="container">
+            <div style="background: rgba(60, 200, 180, 0.08); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 3rem 2rem; text-align: center;">
+                <h2>Not Ready to Commit? Start With the Free Guide.</h2>
+                <p class="section-subtitle">The $5,000 FBA Trap: What They Don't Tell You About Starting Amazon FBA</p>
+
+                <div class="magnet-form">
+                    <form onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">First Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                        </div>
+
+                        <button type="submit" class="cta-primary" style="width: 100%; cursor: pointer;">Get Free Guide →</button>
+
+                        <div class="form-footer">
+                            Free. No spam. Unsubscribe anytime.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 0;">Frequently Asked Questions</h2>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Who is this course for?</span>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        This course is for people who want to build a real business on Amazon FBA, not a quick side hustle. You need to be capital-ready ($15K+), time-ready (15–25 hours/week), and emotionally ready for the operational grind. If you're looking for passive income, this isn't your course. If you're looking for a disciplined, operator-led path to building a real business, you're in the right place.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do I need experience with Amazon FBA?</span>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        No. The course is designed for people new to FBA who want to do it the operator's way from day one. If you have FBA experience, the course will still be valuable—you'll learn the decision frameworks and risk management strategies that most operators never formalize.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How is this different from other FBA courses?</span>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        Most FBA courses teach tactics: how to find products, launch listings, run PPC. This course teaches operator thinking: how to allocate capital, manage risk, make decisions under uncertainty, and build systems. We assume you can learn the mechanics. We teach you how to think like a business owner, not a course taker.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What if the course tells me I shouldn't do FBA?</span>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        That's the goal. The qualification assessment exists because FBA isn't right for everyone. If you don't pass it, the course tells you honestly: your capital situation, time availability, or life circumstances aren't aligned with FBA right now. That's not a failure—it's data that saves you $15,000. We're OK losing a customer who's not ready.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How long do I have access?</span>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        Lifetime. You pay once, you access the course forever. As we update and expand the content, founding members get all updates automatically. Your investment is permanent.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is there a refund policy?</span>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        30-day money-back guarantee. If you're not satisfied with the content within 30 days, we'll refund your purchase. No questions asked. The only catch: we may ask you why so we can improve. But your money comes back either way.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>When will all modules be available?</span>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        As a founding member, you get early access. We're releasing modules on a schedule: Core modules (1–3) immediately, operational modules (4–5) within 8 weeks, advanced modules (6–7) within 12 weeks. You'll get each module as it's completed. Standard students will wait until all 7 are done before enrollment opens.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do I need to complete Course 1 first?</span>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        No. The Operator's Framework is a standalone course. You don't need to have taken any other ZeroToAsset course. That said, if you've completed Course 1, you'll get more depth in some advanced modules. Either way, this course stands alone.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA SECTION -->
+    <section id="final-cta">
+        <div class="container">
+            <h2 style="margin-bottom: 2rem;">Build parallel income without gambling your career.</h2>
+
+            <div class="final-cta-text">
+                <p>The path is proven. The framework is clear. <strong>The only question is whether you're ready.</strong></p>
+            </div>
+
+            <div class="cta-group">
+                <button class="cta-primary" onclick="document.getElementById('founding').scrollIntoView({behavior: 'smooth'});">JOIN WAITLIST →</button>
+                <a href="#lead-magnet" class="cta-secondary">Or Download the Free Guide First</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">ZEROTOASSET</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="courses.html">Courses</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="footer-copyright">
+                © 2026 ZeroToAsset Press. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle FAQ items
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+
+            answer.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Toggle module content
+        function toggleModule(element) {
+            const content = element.nextElementSibling;
+            const toggle = element.querySelector('.module-toggle');
+
+            content.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            // Placeholder for ESP integration
+            console.log('Form submitted:', { name, email });
+
+            // Visual feedback
+            const form = event.target;
+            const button = form.querySelector('button');
+            const originalText = button.textContent;
+
+            button.textContent = 'Check Your Email ✓';
+            button.style.background = 'var(--accent-teal)';
+            button.style.color = 'var(--primary-dark)';
+
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = 'var(--accent-orange)';
+                button.style.color = 'var(--primary-dark)';
+            }, 3000);
+
+            form.reset();
+        }
+
+        // Smooth scroll for buttons (fallback for older browsers)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade-in on scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-on-scroll');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
